@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<div th:fragment="dashBoard">
+    <header class="py-2 bg-primary text-white">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h1><i class="fas fa-cogs"></i>DashBoard</h1>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="py-5 mb-4 bg-light">
+        <div class="container mb-4">
+            <div class="row">
+                <div class="col md-4">
+                    <a href="#" class="btn btn-block btn-primary" data-toggle="modal" data-target="#categoryModal"><i
+                            class="fas fa-plus mr-2"></i>Category</a>
+                </div>
+                <div class="col md-4">
+                    <a href="#" class="btn btn-block btn-success" data-toggle="modal" data-target="#authorModal"><i
+                            class="fas fa-plus mr-2"></i>Author</a>
+                </div>
+                <div class="col md-4">
+                    <a href="#" class="btn btn-block btn-warning" data-toggle="modal" data-target="#bookModal"><i
+                            class="fas fa-plus mr-2"></i>Book</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <div th:insert="fragments/bookTable.html :: bookTable"></div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card bg-primary text-center mb-3 text-white shadow">
+                        <div class="card-body">
+                          <h1 class="card-title">Category</h1>
+                            <h class="display-4 card-text"> <i class="fas fa-folder-open"></i>
+                                <span class="card-text" th:text="${categories.size()}"></span></h>
+                            <a href="#" th:href="@{/admin/list-category}" class="btn btn-outline-light btn-block">View</a>
+                        </div>
+                    </div>
+                    <div class="card bg-success text-center mb-3 text-white shadow">
+                        <div class="card-body">
+                            <h1 class="card-title">Author</h1>
+                            <h class="display-4 card-text"> <i class="fas fa-pencil-alt"></i>
+                                <span class="card-text" th:text="${authors.size()}"></span></h>
+                            <a href="#" th:href="@{/admin/list-author}" class="btn btn-outline-light btn-block">View</a>
+                        </div>
+                    </div>
+                    <div class="card bg-warning text-center mb-3 text-white shadow">
+                        <div class="card-body">
+                            <h1 class="card-title">Book</h1>
+                            <h class="display-4 card-text"> <i class="fas fa-book"></i>
+                                <span class="card-text" th:text="${books.size()}"></span></h>
+                            <a href="#"  th:href="@{/admin/list-books}" class="btn btn-outline-light btn-block">View</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Category Modal-->
+    <section>
+        <div class="modal fade" id="categoryModal">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary text-white">
+                        <h5 class="modal-title">Add Category</h5>
+                        <button class="close" data-dismiss="modal"><span>&times;</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="#" th:action="@{/admin/save-category}" th:object="${category}" method="post">
+                            <div class="form-group">
+                                <label for="name">Category Name</label>
+                                <input type="text" id="name" class="form-control" th:field="*{categoryName}">
+                            </div>
+                            <button type="submit" class="btn btn-outline-primary">Save</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<!--    Author Modal-->
+    <section>
+        <div class="modal fade" id="authorModal">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header bg-success text-white">
+                        <h5 class="modal-title">Add Author</h5>
+                        <button class="close" data-dismiss="modal"><span>&times;</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="#" th:action="@{/admin/save-author}" th:object="${author}" method="post">
+                            <div class="form-group">
+                                <label for="authorName">Author Name</label>
+                                <input type="text" class="form-control" id="authorName" th:field="*{name}">
+                            </div>
+                            <div class="form-group">
+                                <label for="dob">Date of Birth</label>
+                                <input type="date" id="dob" class="form-control" th:field="*{dateOfBirth}">
+                            </div>
+                            <div class="form-group">
+                                <label for="zipCode">Zip Code</label>
+                                <input type="text" id="zipCode" class="form-control" th:field="*{address.zipCode}">
+                            </div>
+                            <div class="form-group">
+                                <label for="streetName">Street Name</label>
+                                <input type="text" id="streetName" class="form-control" th:field="*{address.streetName}">
+                            </div>
+                            <div class="form-group">
+                            <label for="phoneNumber">Phone Number</label>
+                            <input type="text" id="phoneNumber" class="form-control" th:field="*{address.phoneNumber}">
+                             </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="text" id="email" class="form-control" th:field="*{address.email}">
+                            </div>
+                            <button type="submit" class="btn btn-success btn-block">Save</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+<!--Book Modal-->
+    <section>
+        <div class="modal fade" id="bookModal">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header bg-warning text-white">
+                        <h5 class="modal-title">Add Book</h5>
+                        <button class="close" data-dismiss="modal"><span>&times;</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="#" th:action="@{/admin/save-book}" th:object="${book}" method="post">
+                            <div class="form-group">
+                                <label for="bookTitle">Book Name</label>
+                                <input type="text" class="form-control" id="bookTitle" th:field="*{title}">
+                            </div>
+                            <div class="form-group">
+                                <label for="price">Book Price</label>
+                                <input type="number" step="any" class="form-control" id="price" th:field="*{price}">
+                            </div>
+                            <div class="form-group">
+                                <label for="yearPublished">Book YearPublished</label>
+                                <input type="date" class="form-control" id="yearPublished" th:field="*{yearPublished}">
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Book Description</label>
+                                <input type="text" class="form-control" id="description" th:field="*{description}">
+                            </div>
+                            <div class="form-group">
+                                <label for="image">Book Image</label>
+                                <input type="text" class="form-control" id="image" th:field="*{imgUrl}">
+                            </div>
+                            <div class="form-group">
+                                <label>Select Category</label>
+                                <select class="form-control" th:field="*{categoryId}">
+                                    <option th:each="cat : ${categories}" th:value="${cat.id}"
+                                    th:text="${cat.categoryName}"></option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Select Author</label>
+                                <select class="form-control" th:field="*{authorId}">
+                                    <option th:each="author : ${authors}" th:value="${author.id}"
+                                    th:text="${author.name}"></option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-block btn-warning">Add Book</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+</body>
+</html>

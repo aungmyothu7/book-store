@@ -1,0 +1,52 @@
+.nav{
+    font-family: 'Noto Sans JP', sans-serif;
+    font-family: 'Raleway', sans-serif;
+}
+.navbar-brand{
+    font-family: 'Handlee', cursive;
+    font-size: 2rem;
+}
+.carousel-item{
+    height: 450px;
+}
+.carousel-item.carousel-image-1{
+ background: url("../../img/image1.jpg");
+    background-size: cover;
+}
+.carousel-image-2{
+    background: url("../../img/image2.jpg");
+    background-size: cover;
+}
+.carousel-image-3{
+    background: url("../../img/image3.jpg");
+    background-size: cover;
+}
+#overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+.home-icon i{
+    font-size: 36px;
+}
+
+#home-heading{
+    position: relative;
+    min-height: 200px;
+    background: url("../../img/lights.jpg");
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    color: white;
+}
+#wave i{
+    color: deepskyblue;
+    opacity: 0.3%;
+}
+
+#footer{
+    background: #0b2e13;
+    color: white;
+}

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{}" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<main role="main">
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col" th:with="httpStatus=${T(org.springframework.http.HttpStatus).valueOf(#response.status)}">
+                <div class="alert alert-danger">
+                    <h3 th:text="|${httpStatus} -${httpStatus.reasonPhrase}|"></h3>
+                    <p class="lead" th:text="${errorMessage}"></p>
+                </div>
+            </div>
+            <a th:href="@{/home}" class="btn btn-primary">Go Home</a>
+        </div>
+    </div>
+</main>
+</body>
+</html>
